@@ -10,10 +10,15 @@ from mnist_loader import load_mnist_data, visualize_samples
 import time
 import os
 
-def save_model_info(network, model_dir='./saved_models'):
+def save_model_info(network, model_dir=None):
     """
     Save neural network model structure and weights/biases
     """
+    if model_dir is None:
+        # 使用根目录的统一模型保存路径
+        project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        model_dir = os.path.join(project_root, 'saved_models', 'naive_version')
+    
     # Create model directory if it doesn't exist
     if not os.path.exists(model_dir):
         os.makedirs(model_dir)
@@ -137,7 +142,7 @@ def main():
         print(f"  True {i}: {row}")
     # 9. Save the trained model
     print("\n9. Saving the trained model...")
-    save_model_info(network, model_dir='./saved_models')
+    save_model_info(network)
 
 if __name__ == "__main__":
     main()

@@ -10,10 +10,15 @@ import os
 import json
 
 
-def load_model_info(model_dir='./saved_models'):
+def load_model_info(model_dir=None):
     """
     Load neural network model from saved files using numpy
     """
+    if model_dir is None:
+        # 使用根目录的统一模型加载路径
+        project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        model_dir = os.path.join(project_root, 'saved_models', 'naive_version')
+    
     # Load model structure
     with open(os.path.join(model_dir, 'model_structure.json'), 'r') as f:
         model_info = json.load(f)
@@ -78,14 +83,21 @@ def main():
     print("=" * 60)
     print("Loading and Using Saved Neural Network Model (NumPy)")
     print("=" * 60)
+    
+    # Get the unified model path
+    project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    model_dir = os.path.join(project_root, 'saved_models', 'naive_version')
+    model_structure_path = os.path.join(model_dir, 'model_structure.json')
+    
     # Check if saved model exists
-    if not os.path.exists('./saved_models/model_structure.json'):
+    if not os.path.exists(model_structure_path):
         print("No saved model found!")
         print("Please run 'train_and_save.py' first to train and save a model.")
+        print(f"Expected model location: {model_dir}")
         return
     # Load the saved model
     print("\n1. Loading saved model...")
-    network = load_model_info('./saved_models')
+    network = load_model_info()
     # Load some test data
     print("\n2. Loading test data...")
     _, _, X_test, y_test = load_mnist_data(num_train=0, num_test=100)

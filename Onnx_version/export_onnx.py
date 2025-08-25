@@ -106,8 +106,12 @@ def verify_onnx(onnx_path: str, model: torch.nn.Module, sample_input: torch.Tens
 
 
 def main() -> None:
+    # 使用根目录的统一模型路径作为默认值
+    project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    default_model_dir = os.path.join(project_root, 'saved_models', 'onnx_version')
+    
     parser = argparse.ArgumentParser(description="Export trained MNIST MLP model to ONNX")
-    parser.add_argument("--model-dir", type=str, default="./saved_models", help="Directory containing model_structure.json and model.pth")
+    parser.add_argument("--model-dir", type=str, default=default_model_dir, help="Directory containing model_structure.json and model.pth")
     parser.add_argument("--structure-json", type=str, default=None, help="Path to model_structure.json (overrides --model-dir if set)")
     parser.add_argument("--weights", type=str, default=None, help="Path to model.pth (overrides --model-dir if set)")
     parser.add_argument("--output", type=str, default=None, help="Output ONNX file path (default: <model-dir>/model.onnx)")
