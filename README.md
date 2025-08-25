@@ -134,7 +134,7 @@ python inference.py
 
 ## 技术栈
 
-- **Python 3.7+**: 编程语言
+- **Python 3.10**: 编程语言
 - **NumPy**: 数值计算（Naive版本）
 - **PyTorch**: 深度学习框架
 - **Matplotlib**: 数据可视化

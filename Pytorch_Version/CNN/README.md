@@ -26,7 +26,7 @@ CNN/
 
 ### 1. 环境准备
 
-确保你的系统已安装 Python 3.7+ 和 pip，然后安装项目依赖：
+确保你的系统已安装 Python 3.10 和 pip，然后安装项目依赖：
 
 ```bash
 pip install -r requirements.txt
