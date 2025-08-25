@@ -11,18 +11,28 @@ import json
 import os
 import torch
 
-def load_model_info(model_path='rnn_model.pth'):
+def load_model_info(model_dir=None):
     """
     Load neural network model from saved files using PyTorch
     """
-    # Create network with default structure
+    if model_dir is None:
+        # 使用根目录的统一模型加载路径
+        project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+        model_dir = os.path.join(project_root, 'saved_models', 'rnn_version')
+    
+    # Load model structure
+    with open(os.path.join(model_dir, 'model_structure.json'), 'r') as f:
+        model_info = json.load(f)
+    
+    # Create network with loaded structure
     network = RNN()
     
     # Load PyTorch model state
+    model_path = os.path.join(model_dir, 'model_weights.pth')
     network.load_state_dict(torch.load(model_path))
     network.eval()
     
-    print(f"Model loaded from {model_path}")
+    print(f"Model loaded from {model_dir}")
     return network
 
 def predict_single_digit(network, image):
@@ -86,15 +96,21 @@ def main():
     print("Loading and Using Saved Neural Network Model")
     print("=" * 60)
     
+    # Get the unified model path
+    project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    model_dir = os.path.join(project_root, 'saved_models', 'rnn_version')
+    model_structure_path = os.path.join(model_dir, 'model_structure.json')
+    
     # Check if saved model exists
-    if not os.path.exists('./saved_models/model_structure.json'):
+    if not os.path.exists(model_structure_path):
         print("No saved model found!")
-        print("Please run 'run_mnist_example.py' first to train and save a model.")
+        print("Please run 'train_and_save.py' first to train and save a model.")
+        print(f"Expected model location: {model_dir}")
         return
     
     # Load the saved model
     print("\n1. Loading saved model...")
-    network = load_model_info('./saved_models')
+    network = load_model_info()
     
     # Load some test data
     print("\n2. Loading test data...")
