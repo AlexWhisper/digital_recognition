@@ -21,8 +21,10 @@ def load_mnist_data(num_train: int = 5000, num_test: int = 1000) -> Tuple[np.nda
         import torchvision
         from torchvision import datasets, transforms
         
-        # 创建数据目录
-        data_dir = './mnist_data'
+        # 使用根目录的统一数据目录
+        import os.path
+        project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        data_dir = os.path.join(project_root, 'mnist_data')
         if not os.path.exists(data_dir):
             os.makedirs(data_dir)
         
