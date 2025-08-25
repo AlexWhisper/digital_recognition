@@ -2,18 +2,18 @@
 
 这是一个使用 PyTorch 实现的完整 MNIST 手写数字识别项目，包含从数据加载、模型定义、训练到推理的完整流程。
 
-## 🎯 项目概述
+## 项目概述
 
 本项目实现了一个多层感知机（MLP）神经网络来识别手写数字（0-9），使用经典的 MNIST 数据集进行训练和测试。项目采用模块化设计，代码结构清晰，适合学习和理解神经网络的基本原理。
 
-## 📁 项目结构
+## 项目结构
 
 ```
-mannul/
-├── 0_model.py              # 神经网络模型定义
-├── 0_mnist_loader.py       # MNIST 数据加载和预处理
-├── 1_train_and_save.py     # 模型训练和保存
-├── 2_inference.py          # 模型加载和推理
+MLP/
+├── model.py                # 神经网络模型定义
+├── mnist_loader.py         # MNIST 数据加载和预处理
+├── train_and_save.py       # 模型训练和保存
+├── inference.py            # 模型加载和推理
 ├── requirements.txt         # 项目依赖
 ├── README.md               # 项目说明文档
 ├── saved_models/           # 保存的模型文件
@@ -22,7 +22,7 @@ mannul/
 └── mnist_data/             # MNIST 数据集（自动下载）
 ```
 
-## 🚀 快速开始
+## 快速开始
 
 ### 1. 环境准备
 
@@ -38,7 +38,7 @@ pip install -r requirements.txt
 
 #### 步骤 1: 数据加载测试
 ```bash
-python 0_mnist_loader.py
+python mnist_loader.py
 ```
 - 下载 MNIST 数据集
 - 测试数据加载功能
@@ -46,7 +46,7 @@ python 0_mnist_loader.py
 
 #### 步骤 2: 模型训练
 ```bash
-python 1_train_and_save.py
+python train_and_save.py
 ```
 - 加载 MNIST 数据
 - 创建并训练神经网络
@@ -55,13 +55,13 @@ python 1_train_and_save.py
 
 #### 步骤 3: 模型推理
 ```bash
-python 2_inference.py
+python inference.py
 ```
 - 加载保存的模型
 - 进行预测推理
 - 可视化预测结果
 
-## 🧠 模型架构
+## 模型架构
 
 ### 神经网络结构
 - **输入层**: 784 个神经元（28×28 像素图像展平）
@@ -76,33 +76,33 @@ python 2_inference.py
 - **批次大小**: 32
 - **训练轮数**: 30
 
-## 📊 功能特性
+## 功能特性
 
-### 数据加载 (`0_mnist_loader.py`)
+### 数据加载 (`mnist_loader.py`)
 - 自动下载 MNIST 数据集
 - 数据预处理和标准化
 - 样本可视化
 - One-hot 编码转换
 
-### 模型定义 (`0_model.py`)
+### 模型定义 (`model.py`)
 - 灵活的层数配置
 - 内置训练方法
 - 预测和评估功能
 - 模型保存和加载
 
-### 训练流程 (`1_train_and_save.py`)
+### 训练流程 (`train_and_save.py`)
 - 完整的训练流程
 - 训练过程可视化
 - 性能评估和分析
 - 模型自动保存
 
-### 推理应用 (`2_inference.py`)
+### 推理应用 (`inference.py`)
 - 模型加载和恢复
 - 单张图像预测
 - 预测结果可视化
 - 交互式测试模式
 
-## 🔧 技术实现
+## 技术实现
 
 ### 核心技术
 - **PyTorch**: 深度学习框架
@@ -116,17 +116,17 @@ python 2_inference.py
 - 详细的训练过程监控
 - 灵活的模型配置选项
 
-## 📈 性能表现
+## 性能表现
 
 在标准 MNIST 测试集上，模型通常能达到：
 - **训练准确率**: 95%+
 - **测试准确率**: 90%+
 - **训练时间**: 约 2-5 分钟（取决于硬件配置）
 
-## 🛠️ 自定义配置
+## 自定义配置
 
 ### 修改网络结构
-在 `1_train_and_save.py` 中修改 `layer_sizes` 参数：
+在 `train_and_save.py` 中修改 `layer_sizes` 参数：
 
 ```python
 # 例如：增加更多隐藏层
@@ -152,7 +152,7 @@ X_train, y_train, X_test, y_test = load_mnist_data(
 )
 ```
 
-## 🐛 常见问题
+## 常见问题
 
 ### Q: 运行时提示 "No module named 'torch'"
 **A**: 请确保已正确安装 PyTorch：
@@ -170,17 +170,17 @@ num_train = 2000 # 减少训练样本
 ### Q: 模型保存失败
 **A**: 确保 `saved_models/` 目录存在写入权限，或手动创建该目录。
 
-## 📚 学习资源
+## 学习资源
 
 - [PyTorch 官方教程](https://pytorch.org/tutorials/)
 - [MNIST 数据集介绍](http://yann.lecun.com/exdb/mnist/)
 - [神经网络基础理论](https://cs231n.github.io/)
 
-## 🤝 贡献指南
+## 贡献指南
 
 欢迎提交 Issue 和 Pull Request 来改进项目！
 
-## 📄 许可证
+## 许可证
 
 本项目采用 MIT 许可证，详见 LICENSE 文件。
 

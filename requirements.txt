@@ -1,0 +1,28 @@
+# 深度学习入门项目：手写数字识别 - 统一依赖文件
+# 适用于所有版本的基础依赖
+
+# 基础数值计算和可视化
+numpy>=1.21.0
+matplotlib>=3.5.0
+
+# 深度学习框架（PyTorch版本需要）
+torch>=1.9.0
+torchvision>=0.10.0
+
+# 机器学习工具
+scikit-learn>=1.0.0
+
+# ONNX相关（模型部署版本需要）
+onnx>=1.12.0
+onnxruntime>=1.12.0
+
+# 可选：Jupyter notebook支持（用于交互式学习）
+# jupyter>=1.0.0
+# ipykernel>=6.0.0
+
+# 说明：
+# - Naive_Version 只需要 numpy 和 matplotlib
+# - PyTorch_Version 需要 torch, torchvision, numpy, matplotlib, scikit-learn
+# - Onnx_version 需要额外的 onnx 和 onnxruntime
+# 
+# 如果只想运行特定版本，可以安装对应子目录下的 requirements.txt
